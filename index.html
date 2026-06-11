@@ -40,18 +40,24 @@
   summary { font-weight: 600; cursor: pointer; }
   details p { margin-top: 8px; color: #4b5263; font-size: 15.5px; }
   footer { text-align: center; padding: 32px 0 48px; color: #8a92a3; font-size: 14px; }
-  @media (max-width: 640px) { .deliver ul { columns: 1; } }
+  .url-form { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 30px; }
+  .url-input { font-size: 17px; padding: 14px 18px; border: 2px solid #d1d5db; border-radius: 12px; width: 340px; outline: none; }
+  .url-input:focus { border-color: var(--accent); }
+  @media (max-width: 640px) { .deliver ul { columns: 1; } .url-input { width: 100%; } }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <nav><div class="logo">Landing<span>Lens</span></div><a class="cta" style="padding:10px 20px;font-size:15px;box-shadow:none" href="https://lolarose623.gumroad.com/l/saens">Get my audit</a></nav>
+  <nav><div class="logo">Landing<span>Lens</span></div><a class="cta" style="padding:10px 20px;font-size:15px;box-shadow:none" href="#pricing">Get my audit</a></nav>
 
   <section class="hero">
     <h1>Your landing page is leaking customers.<br>Find every leak in 15 minutes.</h1>
     <p class="sub">A senior-level conversion audit of your landing page — scored, prioritized, and delivered to your inbox. Powered by AI trained on what actually makes pages convert.</p>
-    <a class="cta" href="https://lolarose623.gumroad.com/l/saens">Audit my page — $49</a>
-    <div class="under-cta">No call. No upsell. Just paste your URL at checkout.</div>
+    <form class="url-form" onsubmit="return goCheckout(this)">
+      <input type="url" name="url" placeholder="https://your-landing-page.com" required class="url-input">
+      <button type="submit" class="cta" style="border:0;cursor:pointer">Audit my page — $49</button>
+    </form>
+    <div class="under-cta">No call. No upsell. Just paste your URL and go.</div>
   </section>
 
   <div class="strip">
@@ -81,11 +87,14 @@
     </ul>
   </div>
 
-  <div class="price-card">
+  <div class="price-card" id="pricing">
     <h2 style="margin:0 0 8px">One page, one price</h2>
     <div class="price">$49 <small>one-time</small></div>
     <div class="compare">Agencies charge $500–$2,000 for the same teardown — in two weeks, not 15 minutes.</div>
-    <a class="cta" href="https://lolarose623.gumroad.com/l/saens" style="margin-top:24px">Get my audit now</a>
+    <form class="url-form" onsubmit="return goCheckout(this)" style="margin-top:24px">
+      <input type="url" name="url" placeholder="https://your-landing-page.com" required class="url-input">
+      <button type="submit" class="cta" style="border:0;cursor:pointer">Get my audit now</button>
+    </form>
     <div class="guarantee">Not useful? Reply to the email within 7 days for a full refund.</div>
   </div>
 
@@ -100,5 +109,8 @@
 
   <footer>© LandingLens · Automated conversion audits · Refunds: reply to your delivery email within 7 days.</footer>
 </div>
+<script>
+function goCheckout(form){var u=form.url.value.trim();if(!u)return false;window.location.href="https://lolarose623.gumroad.com/l/saens?url="+encodeURIComponent(u);return false;}
+</script>
 </body>
 </html>
